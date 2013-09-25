@@ -1,0 +1,40 @@
+﻿--- 
+USER_ID: Env1
+USER_Infor: 
+  UserForm_username : "demo123" 
+  UserForm_password : "123456" 
+  UserForm_repassword : "123456" 
+  UserForm_companyName : "123456" 
+  UserForm_regAddress : "123456" 
+  UserForm_bussLicence : "123456" 
+  UserForm_legalPerson : "123456" 
+  UserForm_address : "123456" 
+  UserForm_zipcode : "123456" 
+  UserForm_companyPhone : "13311113456" 
+  UserForm_companyFax : "12345648" 
+  UserForm_contactName : "1" 
+  UserForm_contactPhone : "13311113456" 
+  UserForm_contactLandline : "12345648" 
+  UserForm_answer : "11" 
+  UserForm_contactQQ : "12345" 
+USER_select: 
+  UserForm_companyType : "经销商"  #select 1-2
+  UserForm_question : "我的出生地？"   #select 1-10
+USER_verify:   
+  UserForm_verifyCode : "1" 
+  yw0: "src"
+  
+--- 
+ENV_ID: Env2
+ENV_Infor: 
+  TEST_URL : "http://210.14.140.118/JPData/manager/auth/login" 
+  USERNAME : "admin" 
+  PASSW0RD : "123456" 
+  TEST_DATA_FILE : "/test_data_env2.xls" 
+
+--- 
+ENV_ID: Env3 
+ENV_Infor: 
+  TEST_URL : "http://210.14.140.118/JPData/manager/auth/login" 
+  USERNAME : "demo" 
+  PASSW0RD : "123456" 
