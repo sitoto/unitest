@@ -31,8 +31,8 @@ class UserRegister < Test::Unit::TestCase
     end #end yf
   end    
 
-  def checkcode(gifurl)
-#      puts gifurl
+  def checkcode(image_src)
+#      puts image_src
       checkout = ''
 =begin      
       File.open("C:\\CheckImg.png", "wb") do |file|
@@ -43,7 +43,7 @@ class UserRegister < Test::Unit::TestCase
       end
     
 #      require 'net/http'
-#      resp = Net::HTTP.get_response(URI(gifurl))
+#      resp = Net::HTTP.get_response(URI(image_src))
 #      
 #      File.open("C:\\CheckImg.jpg", "wb") do |file|
 #        file.write(resp.body)
@@ -69,17 +69,22 @@ class UserRegister < Test::Unit::TestCase
   def test_reg
       $browser = Watir::Browser.new :ie
       #$browser = Watir::Browser.new :chrome
+      #$browser = Watir::Browser.new :ff
       
       $browser.goto($test_url)
       
-      gifurl = $browser.img(:id, "yw0").src
-      #save (path)
-      location = "C:\\checkimg.png"
-      $browser.image(:id , "yw0").save(location)
+      image_src = $browser.img(:id, "yw0").src
+      puts path = "c:\\checkimg.png"
+      system("del c:\\checkimg.png")
+      $browser.image(:id , "yw0").save(path)
       #pp $browser.img(:id , "yw0")
       
+#      File.open(location, 'wb') do |f|
+#        f.write open(image_src).read
+#      end
       
-      code = checkcode(gifurl)
+      
+      code = checkcode(image_src)
       $browser.text_field(:id, "UserForm_verifyCode").set code
       
       $txt_arr.each do |object|
@@ -100,7 +105,7 @@ class UserRegister < Test::Unit::TestCase
   
   def teardown 
     #logout()                                      # 退出应用
-    $browser.close if defined? $browser             # 关闭 IE 浏览器
+    #$browser.close if defined? $browser             # 关闭 IE 浏览器
   end
 
 

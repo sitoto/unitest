@@ -1,7 +1,7 @@
 ﻿--- 
 USER_ID: Env1
 USER_Infor: 
-  UserForm_username : "demo123" 
+  UserForm_username : "j_123_012113696" 
   UserForm_password : "123456" 
   UserForm_repassword : "123456" 
   UserForm_companyName : "123456" 
@@ -22,7 +22,9 @@ USER_select:
   UserForm_question : "我的出生地？"   #select 1-10
 USER_verify:   
   UserForm_verifyCode : "1" 
-  yw0: "src"
+USER_verify_image:
+  yw0: "src_path"
+USER_result: true
   
 --- 
 ENV_ID: Env2

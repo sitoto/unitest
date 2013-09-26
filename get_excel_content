@@ -1,0 +1,13 @@
+require 'win32ole'
+
+#Open the spreadsheet
+xl = WIN32OLE.new('excel.application')
+wrkbook= xl.Workbooks.Open('C:\\Logins.xlsx')
+wrksheet= wrkbook.Worksheets(1)
+
+#Convert the range of cells to a 2D array
+login_data = wrksheet.range("A1:B2").value
+
+#Output of the 2D array
+p login_data
+#=> [["jsmith", "password1"], ["jdoe", "password2"]]

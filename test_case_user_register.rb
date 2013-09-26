@@ -24,32 +24,13 @@ class UserRegister < Test::Unit::TestCase
  	data['USER_select'].each do |key , value|
 	  $select_arr <<  {"id" => key, "value" => value}
 	end
-         #$test_data_file = data['USER_Infor']['TEST_DATA_FILE']
 	 $capture_pic = env_id
        end #end if
       end #end data
     end #end yf
   end    
 
-  def checkcode(gifurl)
-#      puts gifurl
-      checkout = ''
-=begin      
-      File.open("C:\\CheckImg.png", "wb") do |file|
-        open(gifurl) do |read_file|
-           file.write(read_file.read)
-        end
-        file.close
-      end
-    
-#      require 'net/http'
-#      resp = Net::HTTP.get_response(URI(gifurl))
-#      
-#      File.open("C:\\CheckImg.jpg", "wb") do |file|
-#        file.write(resp.body)
-#        file.close
-#      end
-=end    
+  def checkcode(checkout)
       system("c:\\CheckBat.bat")
       if File.exists?("c:\\CheckCode.txt") ==true
         File.open("c:\\CheckCode.txt","r") do |line|
@@ -57,8 +38,7 @@ class UserRegister < Test::Unit::TestCase
           line.close
         end
       end
-      puts checkout
-      return checkout
+      checkout
   end   
 
   
@@ -68,18 +48,13 @@ class UserRegister < Test::Unit::TestCase
   
   def test_reg
       $browser = Watir::Browser.new :ie
-      #$browser = Watir::Browser.new :chrome
-      
       $browser.goto($test_url)
       
-      gifurl = $browser.img(:id, "yw0").src
-      #save (path)
-      location = "C:\\checkimg.png"
-      $browser.image(:id , "yw0").save(location)
-      #pp $browser.img(:id , "yw0")
+      path = "c:\\checkimg.png"
+      system("del #{path}")
+      $browser.image(:id , "yw0").save(path)
       
-      
-      code = checkcode(gifurl)
+      code = checkcode("")
       $browser.text_field(:id, "UserForm_verifyCode").set code
       
       $txt_arr.each do |object|
@@ -90,10 +65,12 @@ class UserRegister < Test::Unit::TestCase
       end
       
       $browser.input(:name, "yt0").click
-      #$browser .maximize
-      result = assert_equal($browser .title,"注册 - 嘉配数据知识平台查询系统")
+      $browser .maximize
+      result = assert_equal($browser.title,"注册 - 嘉配数据知识平台查询系统error")
+      
+      pp result
 
-      #$browser.screenshot.save ("#{$capture_pic}.png") unless result
+      $browser.screenshot.save ("#{$capture_pic}.png") unless result
       #ie.link(:text, "P").click
   end
 
