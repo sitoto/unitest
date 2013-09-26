@@ -11,7 +11,7 @@ class UserRegister < Test::Unit::TestCase
 #include Watir::Screenshot
 
   def getEnvInfor (env_id) 
-    $test_url = "http://210.14.140.118/JPData/query_v2_2/site/signup" 
+    $test_url = "http://qun.qzone.qq.com/" 
     $txt_arr = []
     $select_arr = []
     
@@ -43,30 +43,26 @@ class UserRegister < Test::Unit::TestCase
 
   
   def setup 
-    getEnvInfor ('Env1')                      # 获取环境信息
+    #getEnvInfor ('Env1')                      # 获取环境信息
+    $test_url = "http://qun.qzone.qq.com/" 
   end 
   
   def test_reg
-      $browser = Watir::Browser.new :ie
-      $browser.goto($test_url)
+      $browser = Watir::Browser.new :chrome
+      #$browser.goto($test_url)
       
-      path = "c:\\checkimg.png"
-      system("del #{path}")
-      $browser.image(:id , "yw0").save(path)
+      #path = "c:\\checkimg.png"
+      #system("del #{path}")
+      #$browser.image(:id , "yw0").save(path)
       
-      code = checkcode("")
-      $browser.text_field(:id, "UserForm_verifyCode").set code
+      #code = checkcode("")
+      #$browser.text_field(:id, "UserForm_verifyCode").set code
       
-      $txt_arr.each do |object|
-        $browser.text_field(:id, object["id"]).set object["value"]
-      end
-      $select_arr.each do |object|
-	$browser.select_list(:id, object["id"]).select object["value"]
-      end
       
-      $browser.input(:name, "yt0").click
-      $browser .maximize
-      result = assert_equal($browser.title,"注册 - 嘉配数据知识平台查询系统error")
+      #$browser.input(:id, "login_button").click
+
+      $browser.goto('http://qqun.qq.com/cgi-bin/qun_search/search_group?k=%E6%B1%BD%E9%85%8D&p=1&n=8&c=1&t=0&st=1&r=0.010035616747952447&d=1&bkn=969357716&v=3493')
+
 
       #$browser.screenshot.save ("#{$capture_pic}.png")
       #ie.link(:text, "P").click
@@ -75,7 +71,7 @@ class UserRegister < Test::Unit::TestCase
   
   def teardown 
     #logout()                                      # 退出应用
-    $browser.close if defined? $browser             # 关闭 IE 浏览器
+    #$browser.close if defined? $browser             # 关闭 IE 浏览器
   end
 
 
